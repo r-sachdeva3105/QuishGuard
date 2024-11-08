@@ -11,10 +11,10 @@ import {
   HandCoins,
   WalletCards,
 } from "lucide-react";
-import Overview from "../components/Overview";
-import RecentTransactions from "../components/RecentTransactions";
+import Overview from "../../components/Overview";
+import RecentTransactions from "../../components/RecentTransactions";
 
-const Dashboard = () => {
+const CustomerDashboard = () => {
   return (
     <main className="w-full shrink-0 flex flex-col gap-6 py-4 md:py-6 px-4 md:px-6 lg:px-20">
       <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
@@ -97,4 +97,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default CustomerDashboard;

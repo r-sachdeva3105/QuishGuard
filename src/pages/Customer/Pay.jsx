@@ -1,9 +1,9 @@
-import { ScanQrCode } from "lucide-react";
+import { ScanQrCode, ShieldCheck } from "lucide-react";
 import { useState } from "react";
 import { BrowserMultiFormatReader, NotFoundException } from "@zxing/library";
 import { Card } from "@/components/ui/card";
 
-const Pay = () => {
+const CustomerPayment = () => {
   const [isEnabled, setIsEnabled] = useState(false);
   const [qrData, setQrData] = useState("");
 
@@ -69,18 +69,29 @@ const Pay = () => {
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium">Vendor</label>
-                <p className="mt-1">Not detected</p>
+                <div className="flex gap-1 items-center">
+                  <span className="mt-1">Not detected</span>
+                  {/* <ShieldCheck /> */}
+                </div>
               </div>
               <div>
                 <label className="block text-sm font-medium">Amount</label>
-                <p className="mt-1">$0.00</p>
+                <span className="mt-1">$0.00</span>
               </div>
-              <button
-                className="cursor-pointer w-full bg-primary dark:bg-primary-foreground text-secondary dark:text-secondary-foreground py-2 px-4 rounded-md transition-colors"
-                onClick={handleScanStop}
-              >
-                Proceed to Pay
-              </button>
+              <div className="flex gap-3">
+                <button
+                  className="cursor-pointer w-full bg-primary dark:bg-primary-foreground text-secondary dark:text-secondary-foreground py-2 px-4 rounded-md transition-colors"
+                  onClick={handleScanStop}
+                >
+                  Authenticate Vendor
+                </button>
+                <button
+                  className="cursor-pointer w-full bg-primary dark:bg-primary-foreground text-secondary dark:text-secondary-foreground py-2 px-4 rounded-md transition-colors"
+                  onClick={handleScanStop}
+                >
+                  Proceed to Pay
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -89,4 +100,4 @@ const Pay = () => {
   );
 };
 
-export default Pay;
+export default CustomerPayment;

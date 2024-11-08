@@ -16,7 +16,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-const Transactions = () => {
+const CustomerTransactions = () => {
   // Sample data with categories
   const [transactions] = useState([
     {
@@ -191,4 +191,4 @@ const Transactions = () => {
   );
 };
 
-export default Transactions;
+export default CustomerTransactions;

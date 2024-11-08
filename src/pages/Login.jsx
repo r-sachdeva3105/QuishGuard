@@ -25,7 +25,7 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     login(credentials);
-    navigate("/dashboard");
+    navigate("/customer-dashboard");
   };
 
   return (
