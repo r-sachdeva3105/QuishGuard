@@ -10,7 +10,6 @@ const Pay = () => {
   const handleScan = (data) => {
     if (data) {
       setQrData(data);
-      setIsEnabled(false);
       handleScanStop();
     }
   };
@@ -27,6 +26,7 @@ const Pay = () => {
     });
   };
   const handleScanStop = () => {
+    setIsEnabled(false);
     const videoElement = document.getElementById("video");
     if (videoElement && videoElement.srcObject) {
       const stream = videoElement.srcObject;
@@ -77,7 +77,7 @@ const Pay = () => {
               </div>
               <button
                 className="cursor-pointer w-full bg-primary dark:bg-primary-foreground text-secondary dark:text-secondary-foreground py-2 px-4 rounded-md transition-colors"
-                onClick={() => setIsEnabled(false)}
+                onClick={handleScanStop}
               >
                 Proceed to Pay
               </button>
