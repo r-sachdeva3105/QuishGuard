@@ -24,10 +24,10 @@ Layout.propTypes = {
 function ProtectedRoute({ children }) {
   const { isAuthenticated } = useAuth();
 
-  console.log('Protected Route - isAuthenticated:', isAuthenticated);
+  console.log("Protected Route - isAuthenticated:", isAuthenticated);
 
   if (!isAuthenticated) {
-    console.log('Redirecting to login...');
+    console.log("Redirecting to login...");
     return <Navigate to="/login" replace />;
   }
 
@@ -48,7 +48,10 @@ function App() {
           <ProtectedRoute>
             <Layout>
               <Routes>
-                <Route path="/" element={<Navigate to="/dashboard" replace />} />
+                <Route
+                  path="/"
+                  element={<Navigate to="/dashboard" replace />}
+                />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/transactions" element={<Transactions />} />
                 <Route path="/pay" element={<Pay />} />
