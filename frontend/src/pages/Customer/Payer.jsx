@@ -1,4 +1,9 @@
-import { ScanQrCode, ShieldCheck } from "lucide-react";
+import {
+  CircleCheckBig,
+  ScanQrCode,
+  ShieldCheck,
+  TriangleAlert,
+} from "lucide-react";
 import { useEffect, useState } from "react";
 import { BrowserMultiFormatReader, NotFoundException } from "@zxing/library";
 import { Card } from "@/components/ui/card";
@@ -18,6 +23,7 @@ const CustomerPayment = () => {
   const [qrData, setQrData] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isPayDialogOpen, setIsPayDialogOpen] = useState(false);
 
   useEffect(() => {
     if (isAuthenticated && userType === "customer" && aliasData !== null) {
@@ -136,15 +142,16 @@ const CustomerPayment = () => {
                   {qrData.amount && <p className="mt-1">${qrData.amount}</p>}
                 </div>
                 <div className="flex gap-3">
-                  <button
-                    className="cursor-pointer w-full bg-primary dark:bg-primary-foreground text-secondary dark:text-secondary-foreground py-2 px-4 rounded-md transition-colors"
+                  {/* <button
+                    className="cursor-pointer w-full bg-primary dark:bg-primary-foreground text-secondary dark:text-secondary-foreground py-2 px-4 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     onClick={handleScanStop}
                   >
                     Authenticate
-                  </button>
+                  </button> */}
                   <button
-                    className="cursor-pointer w-full bg-primary dark:bg-primary-foreground text-secondary dark:text-secondary-foreground py-2 px-4 rounded-md transition-colors"
-                    onClick={handleScanStop}
+                    className="cursor-pointer w-full bg-primary dark:bg-primary-foreground text-secondary dark:text-secondary-foreground py-2 px-4 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    onClick={() => setIsPayDialogOpen(true)}
+                    disabled={!qrData?.amount}
                   >
                     Proceed to Pay
                   </button>
@@ -156,12 +163,29 @@ const CustomerPayment = () => {
       </main>
 
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent>
+        <DialogContent className="rounded-lg w-96">
           <DialogHeader>
-            <DialogTitle>Error</DialogTitle>
+            <DialogTitle className="flex flex-col gap-1 items-center justify-center text-red-500 font-semibold text-xl">
+              <TriangleAlert size={50} />
+              Risk Alert
+            </DialogTitle>
           </DialogHeader>
-          <DialogDescription>{errorMessage}</DialogDescription>
-          <DialogClose>Close</DialogClose>
+          <DialogDescription className="text-center text-lg">
+            Fake QR code detected. Please scan a valid QR code to proceed.
+          </DialogDescription>
+        </DialogContent>
+      </Dialog>
+      <Dialog open={isPayDialogOpen} onOpenChange={setIsPayDialogOpen}>
+        <DialogContent className="rounded-lg w-96">
+          <DialogHeader>
+            <DialogTitle className="flex flex-col gap-1 items-center justify-center text-green-500 font-semibold text-xl">
+              <CircleCheckBig size={50} />
+              Payment Successful
+            </DialogTitle>
+          </DialogHeader>
+          <DialogDescription className="text-center text-lg">
+            Your payment has been processed successfully.
+          </DialogDescription>
         </DialogContent>
       </Dialog>
     </>
