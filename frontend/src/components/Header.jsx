@@ -26,40 +26,42 @@ export default function Header() {
             </SheetTrigger>
           )}
         </div>
-        <SheetContent side="left">
-          <div className="grid gap-2 py-6">
-            <Link
-              to={
-                userType == "customer"
-                  ? "customer-dashboard"
-                  : "vendor-dashboard"
-              }
-              className="flex w-full items-center py-2 text-lg font-semibold"
-            >
-              Dashboard
-            </Link>
-            <Link
-              to={
-                userType == "customer"
-                  ? "customer-transactions"
-                  : "vendor-transactions"
-              }
-              className="flex w-full items-center py-2 text-lg font-semibold"
-            >
-              Transaction
-            </Link>
-            <Link
-              to={
-                userType == "customer" ? "customer-payment" : "vendor-payment"
-              }
-              className="flex w-full items-center py-2 text-lg font-semibold"
-            >
-              Scan & Pay
-            </Link>
-            <ModeToggle />
-            <AvatarDropdown />
-          </div>
-        </SheetContent>
+        {isAuthenticated && (
+          <SheetContent side="left">
+            <div className="grid gap-2 py-6">
+              <Link
+                to={
+                  userType == "customer"
+                    ? "customer-dashboard"
+                    : "vendor-dashboard"
+                }
+                className="flex w-full items-center py-2 text-lg font-semibold"
+              >
+                Dashboard
+              </Link>
+              <Link
+                to={
+                  userType == "customer"
+                    ? "customer-transactions"
+                    : "vendor-transactions"
+                }
+                className="flex w-full items-center py-2 text-lg font-semibold"
+              >
+                Transaction
+              </Link>
+              <Link
+                to={
+                  userType == "customer" ? "customer-payment" : "vendor-payment"
+                }
+                className="flex w-full items-center py-2 text-lg font-semibold"
+              >
+                Scan & Pay
+              </Link>
+              <ModeToggle />
+              <AvatarDropdown />
+            </div>
+          </SheetContent>
+        )}
       </Sheet>
       {isAuthenticated && (
         <nav className="ml-auto hidden lg:flex items-center gap-6">
@@ -89,6 +91,17 @@ export default function Header() {
           </Link>
           <ModeToggle />
           <AvatarDropdown />
+        </nav>
+      )}
+      {!isAuthenticated && (
+        <nav className="ml-auto hidden lg:flex items-center gap-6">
+          <Link
+            to="login"
+            className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 text-lg font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
+          >
+            Login
+          </Link>
+          <ModeToggle />
         </nav>
       )}
     </header>
