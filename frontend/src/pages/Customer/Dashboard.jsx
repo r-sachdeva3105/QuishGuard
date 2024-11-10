@@ -34,14 +34,14 @@ const CustomerDashboard = () => {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-md font-medium">
-              Recent Transactions
+              Frauds Detected
             </CardTitle>
             <ArrowLeftRight className="h-5 w-5 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">27</div>
+            <div className="text-2xl font-bold">4</div>
             <p className="text-sm text-muted-foreground">
-              +17% from last month
+              +25% from last month
             </p>
           </CardContent>
         </Card>

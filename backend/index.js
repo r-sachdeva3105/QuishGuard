@@ -14,6 +14,7 @@ const app = express();
 app.use(express.json());
 const port = process.env.PORT || 3000;
 app.use(cors({ origin: "http://localhost:5173" }));
+// app.use(cors({ origin: "http://quish-guard.vercel.app/" }));
 
 // Endpoint to fetch the access token for Company DTW
 app.get("/api/company/DTWToken", async (req, res) => {

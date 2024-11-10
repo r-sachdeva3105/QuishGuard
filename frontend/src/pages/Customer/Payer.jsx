@@ -14,14 +14,12 @@ import {
   DialogHeader,
   DialogTitle,
   DialogDescription,
-  DialogClose,
 } from "@/components/ui/dialog";
 
 const CustomerPayment = () => {
   const { isAuthenticated, userType, aliasData } = useAuth();
   const [isEnabled, setIsEnabled] = useState(false);
   const [qrData, setQrData] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isPayDialogOpen, setIsPayDialogOpen] = useState(false);
 
@@ -89,7 +87,6 @@ const CustomerPayment = () => {
       setQrData(data.data);
     } catch (error) {
       console.error(error);
-      setErrorMessage(error.message);
       setIsDialogOpen(true);
     }
   };
